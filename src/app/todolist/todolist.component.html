@@ -1,0 +1,96 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<div class="container">
+  <h1 style="padding-top: 15px">To-Do Application</h1>
+  <h5 style="padding-top: 5px; text-align: center">Dev Parikh</h5>
+
+  <hr style="width: 100px; margin-left: auto; margin-right: auto" />
+  <form #taskForm="ngForm">
+    <div class="form-group">
+      <label for="task">Task</label>
+      <input
+        type="text"
+        class="form-control"
+        id="task"
+        placeholder="Enter task"
+        ngModel
+        name="task"
+        required
+      />
+      <small
+        *ngIf="taskForm.invalid && taskForm.dirty"
+        id="errorMessage"
+        class="form-text text-danger"
+        >Required field</small
+      >
+    </div>
+  </form>
+
+  <button
+    *ngIf="!isEditEnabled"
+    [disabled]="taskForm.invalid"
+    id="submitButton"
+    type="submit"
+    class="btn btn-primary"
+    (click)="onSubmit(taskForm)"
+  >
+    Add Task
+  </button>
+
+  <button
+    *ngIf="isEditEnabled"
+    [disabled]="taskForm.invalid"
+    id="updateButton"
+    type="update"
+    class="btn btn-primary"
+    (click)="updateTask(taskForm)"
+  >
+    Update
+  </button>
+
+  <hr />
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Completed</th>
+        <th scope="col">More Actions</th>
+        <!-- <th scope="col">Delete</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of taskArray; index as i">
+        <td>{{ t.taskName }}</td>
+        <td>
+          <input
+            (change)="onCheck(i)"
+            id="myCheckbox"
+            type="checkbox"
+            [checked]="t.isCompleted"
+          />
+        </td>
+        <td style="padding-left: 30px">
+          <!-- <button class="btn btn-danger btn-sm" (click)="onDelete(i)"> -->
+
+          <button
+            (click)="onEdit(i, taskForm)"
+            style="border-width: 0px; background: none; padding-left: 5px"
+          >
+            <i class="fa-solid fa-pen-to-square" style="color: #22d416"></i>
+          </button>
+
+          <button
+            (click)="onDelete(i)"
+            style="border-width: 0px; background: none; padding-left: 10 px"
+          >
+            <i class="fa-solid fa-trash" style="color: #ff0033"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
