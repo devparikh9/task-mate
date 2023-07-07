@@ -3,6 +3,10 @@ h1 {
     font-size: 2rem;
 }
 
+h4 {
+    text-align: center;
+}
+
 #submitButton {
     margin-top: 20px;
 }
