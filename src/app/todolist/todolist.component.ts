@@ -14,8 +14,6 @@ export class TodolistComponent implements OnInit {
   taskArray : {taskName: string; isCompleted: boolean }[] = [];
   
   condition = localStorage.getItem('toDos');
-  
-  
 
   constructor() { }
 
