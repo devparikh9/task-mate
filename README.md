@@ -1,4 +1,4 @@
-# Todo
+# TaskMate - A ToDo Tracker App
 # https://devparikh9.github.io/task-mate/
 
 
